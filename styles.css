@@ -18,3 +18,25 @@
   .scroll-reveal:focus-within{transition:none}
 }
 @media print{.scroll-reveal{opacity:1!important;transform:none!important}}
+
+/* Rotate in from the edges, preserving each artwork's responsive resting angle. */
+@media(prefers-reduced-motion:no-preference){
+  .hero-intro-pending .hero-decor{opacity:0}
+  .hero-intro .hero-dryer{animation:hero-dryer-enter 1.15s cubic-bezier(.22,1,.36,1) both}
+  .hero-intro .hero-tools{animation:hero-tools-enter 1.2s cubic-bezier(.22,1,.36,1) .12s both}
+}
+@keyframes hero-dryer-enter{
+  0%{opacity:0;translate:-55% 14%;rotate:-65deg;scale:.88}
+  70%{opacity:1;translate:1% -1%;rotate:3deg;scale:1.015}
+  100%{opacity:1;translate:0 0;rotate:0deg;scale:1}
+}
+@keyframes hero-tools-enter{
+  0%{opacity:0;translate:55% 18%;rotate:65deg;scale:.88}
+  70%{opacity:1;translate:-1% -1%;rotate:-3deg;scale:1.015}
+  100%{opacity:1;translate:0 0;rotate:0deg;scale:1}
+}
+@media(max-width:700px){
+  .hero-intro .hero-dryer{animation-duration:.85s}
+  .hero-intro .hero-tools{animation-duration:.9s}
+}
+@media print{.hero-decor{opacity:1!important;animation:none!important}}

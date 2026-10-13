@@ -69,3 +69,33 @@ window.addEventListener('message', event => {
     observer.disconnect();
   });
 })();
+
+// A first-visit entrance for the decorative tools; content remains immediately usable.
+(async () => {
+  const hero = document.querySelector('.hero');
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const storageKey = 'lories-hero-intro-v1';
+  if (!hero || motion.matches || window.scrollY > 80) return;
+  try { if (localStorage.getItem(storageKey)) return; } catch { /* Storage may be disabled. */ }
+  const artwork = [...hero.querySelectorAll('.hero-decor')];
+  if (!artwork.length) return;
+  const finish = () => hero.classList.remove('hero-intro-pending', 'hero-intro');
+  const stopForReducedMotion = event => { if (event.matches) finish(); };
+  motion.addEventListener('change', stopForReducedMotion);
+  hero.classList.add('hero-intro-pending');
+  await Promise.all(artwork.map(image => image.decode().catch(() => {})));
+  if (motion.matches || window.scrollY > 80) {
+    finish();
+    motion.removeEventListener('change', stopForReducedMotion);
+    return;
+  }
+  hero.classList.replace('hero-intro-pending', 'hero-intro');
+  try { localStorage.setItem(storageKey, 'seen'); } catch { /* Animation still works without storage. */ }
+  const onEnd = event => {
+    if (event.animationName !== 'hero-tools-enter') return;
+    finish();
+    hero.removeEventListener('animationend', onEnd);
+    motion.removeEventListener('change', stopForReducedMotion);
+  };
+  hero.addEventListener('animationend', onEnd);
+})();
