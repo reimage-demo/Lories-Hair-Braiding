@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://reimage-demo.github.io/Lories-Hair-Braiding/sitemap.xml

@@ -1,0 +1,22 @@
+{
+  "base_url": "https://reimage-demo.github.io/Lories-Hair-Braiding/",
+  "business_name": "Lorie’s African Hair Braiding & Beauty Salon",
+  "title": "Hair Braiding in Hartford, CT | Lorie’s Salon",
+  "description": "Knotless braids, box braids, twists and locs in Hartford, welcoming West Hartford clients. View prices and hours, then call (860) 953-5838 to book.",
+  "phone": "+1-860-953-5838",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "875 New Britain Avenue",
+    "addressLocality": "Hartford",
+    "addressRegion": "CT",
+    "postalCode": "06106",
+    "addressCountry": "US"
+  },
+  "areas_served": ["Hartford", "West Hartford"],
+  "opening_hours": [
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "09:00", "closes": "19:00"},
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday", "Saturday"], "opens": "08:30", "closes": "19:00"}
+  ],
+  "appointment_note": "Walk-ins welcome. Appointments preferred. Sunday is by appointment only with an additional $30 charge.",
+  "same_as": ["https://www.tiktok.com/@lorieshairbraiding0"]
+}

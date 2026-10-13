@@ -4,12 +4,15 @@ function closeMenu() { navigation?.classList.remove('open'); toggle?.setAttribut
 toggle?.addEventListener('click', () => { const open = navigation.classList.toggle('open'); toggle.setAttribute('aria-expanded', String(open)); toggle.textContent = open ? 'Close' : 'Menu'; });
 navigation?.addEventListener('click', event => { if(event.target.closest('a')) closeMenu(); });
 document.addEventListener('keydown', event => { if(event.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') { closeMenu(); toggle.focus(); } });
+window.matchMedia('(max-width: 700px)').addEventListener('change', closeMenu);
+document.addEventListener('click', event => { if (!event.target.closest('.header')) closeMenu(); });
 document.querySelectorAll('[data-post]').forEach(button => {
   button.addEventListener('click', () => {
     const frame = document.createElement('iframe');
     frame.title = `${button.dataset.title} — Lorie’s on TikTok`;
     frame.src = `https://www.tiktok.com/player/v1/${button.dataset.post}?autoplay=0&rel=0&description=0&music_info=0`;
-    frame.allow = 'fullscreen';
+    frame.allow = 'fullscreen; picture-in-picture';
+    frame.tabIndex = 0;
     frame.allowFullscreen = true;
     button.parentElement.append(frame);
     frame.focus();
