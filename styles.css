@@ -10,3 +10,11 @@
 .service-intro{max-width:850px;color:var(--muted);margin:-12px 0 38px;font-size:.9375rem}.service-intro a,.faq p a{text-decoration:underline;text-underline-offset:3px}.service-description{max-width:700px;color:var(--muted);font-size:.875rem;margin:0 0 14px}.section-heading>div{max-width:740px}@media(max-width:700px){.hero .eyebrow{font-size:.6875rem;letter-spacing:.13em}.service-intro{margin:0 0 30px}}
 
 @media(max-width:359px){.wrap{width:calc(100% - 32px)}.visit-card{padding:24px 18px}.hero{padding-inline:16px}.brand{width:150px}.service-row{gap:12px}}
+
+/* Subtle, once-per-visit scroll reveal, shared with the Jam Roc design. */
+@media(prefers-reduced-motion:no-preference){
+  .scroll-reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease;transition-delay:var(--reveal-delay,0s)}
+  .scroll-reveal.is-revealed,.scroll-reveal:focus-within{opacity:1;transform:none}
+  .scroll-reveal:focus-within{transition:none}
+}
+@media print{.scroll-reveal{opacity:1!important;transform:none!important}}

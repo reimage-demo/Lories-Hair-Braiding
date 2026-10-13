@@ -29,3 +29,43 @@ window.addEventListener('message', event => {
     frame.replaceWith(notice);
   });
 });
+
+// Match the gentle scroll reveal used across our other sites.
+(() => {
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (motion.matches || !('IntersectionObserver' in window)) return;
+  const elements = document.querySelectorAll([
+    '.visit-copy', '.hours', '.section-heading', '.service-intro',
+    '.service-index', '.service-group', '.price-note', '.work-card',
+    '.embed-note', '.before-visit > h2', '.faq details',
+    '.closing .wrap', '.footer-top'
+  ].join(', '));
+  const reveal = element => {
+    element.classList.add('is-revealed');
+    observer.unobserve(element);
+  };
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) reveal(entry.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  elements.forEach(element => {
+    // Keep the initial view and restored scroll position immediately readable.
+    if (element.getBoundingClientRect().top < window.innerHeight) return;
+    if (element.matches('.work-card')) {
+      const index = Array.prototype.indexOf.call(element.parentElement.children, element);
+      element.style.setProperty('--reveal-delay', `${(index % 3) * 0.09}s`);
+    }
+    element.classList.add('scroll-reveal');
+    observer.observe(element);
+  });
+  document.addEventListener('focusin', event => {
+    const element = event.target.closest('.scroll-reveal');
+    if (element) reveal(element);
+  });
+  motion.addEventListener('change', event => {
+    if (!event.matches) return;
+    elements.forEach(reveal);
+    observer.disconnect();
+  });
+})();
