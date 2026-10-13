@@ -56,3 +56,12 @@
 @media(max-width:700px) and (max-height:640px){
   .hero-tools{width:130px;right:-20px;bottom:-105px}
 }
+
+/* Swipeable category navigation stays within the services section on phones. */
+@media(max-width:700px){
+  .service-index{position:sticky;top:0;z-index:5;flex-wrap:nowrap;align-items:center;gap:10px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch;background:#fff;padding:12px 0;margin-bottom:24px;box-shadow:0 6px 12px #00000008}
+  .service-index::-webkit-scrollbar{display:none}
+  .service-index a{flex:0 0 auto;white-space:nowrap}
+  .service-index a:focus-visible{outline-offset:-3px}
+  .service-group{scroll-margin-top:76px}
+}

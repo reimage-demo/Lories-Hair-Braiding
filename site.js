@@ -36,7 +36,7 @@ window.addEventListener('message', event => {
   if (motion.matches || !('IntersectionObserver' in window)) return;
   const elements = document.querySelectorAll([
     '.visit-copy', '.hours', '.section-heading', '.service-intro',
-    '.service-index', '.service-group', '.price-note', '.work-card',
+    '.service-group', '.price-note', '.work-card',
     '.embed-note', '.before-visit > h2', '.faq details',
     '.closing .wrap', '.footer-top'
   ].join(', '));
